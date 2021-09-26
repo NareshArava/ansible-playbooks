@@ -1,0 +1,5 @@
+--- #My target section playbook
+- hosts: all #webserevers 
+  user: ansible
+  become: yes
+  connection: ssh

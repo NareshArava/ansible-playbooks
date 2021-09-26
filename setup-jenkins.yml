@@ -1,0 +1,43 @@
+--- #install java s/w, download jenkins software and install jenkins s/w
+- hosts: all
+  become: true
+  user: ansible
+  connection: ssh
+  tasks:
+          - name: install java s/w
+            yum:
+                    name: java
+                    state: present
+           
+          - name: install wget
+            yum:
+                name: wget
+                state: present
+         
+          - name: download jenkins software
+            get_url:
+              url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+              dest: /etc/yum.repos.d/jenkins.repo
+
+          - name: download jenkins key
+            rpm_key:
+              state: present
+              key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+              # - name: install epel-release # repository that provides 'daemonize'
+              # yum:
+              #     name: epel #epel-release
+              #     state: installed
+               
+          - name: install jenkins s/w
+            yum:
+              name: jenkins
+              state: installed
+
+
+          - name: start jenkins service 
+            service:
+              name: jenkins
+              state: started
+              enabled: yes          
+

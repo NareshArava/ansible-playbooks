@@ -1,0 +1,8 @@
+--- #stopping services
+- hosts: webserevers
+  user: ansible
+  become: true
+  connection: ssh
+  tasks: 
+    - name: stopping httpd servers
+      action: yum name=httpd state=absent

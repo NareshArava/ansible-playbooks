@@ -1,0 +1,17 @@
+--- # This is demo playbook
+- hosts: all
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+          - name: creating a file with ansible playbook
+            file: path=/tmp/naresh.txt state=file
+
+
+          - name: creating a directory with ansible playbook
+            file: path=/tmp/nareshdir state=directory
+
+
+          - name: copying a file to hosts
+            copy: src=./aravafile dest=/home/ansible
+

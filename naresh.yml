@@ -1,0 +1,12 @@
+- hosts: webserevers
+  user: ansible
+  become: true
+  connection: ssh
+  tasks:
+          - name: creating multiple users
+            action: user name='{{item}}' state=present #we can user user: name also
+            with_items:
+                  - Naresh1
+                  - arava1
+                  - Diwakar
+

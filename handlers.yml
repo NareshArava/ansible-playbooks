@@ -1,0 +1,14 @@
+--- # my handlers playbook
+- hosts: webserevers
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+          - name: installing HTTPD on webservers
+            action: yum name=httpd state=present
+            notify: start HTTPD service
+
+
+  handlers: 
+          - name: start HTTPD service
+            action: service name=httpd state=started
